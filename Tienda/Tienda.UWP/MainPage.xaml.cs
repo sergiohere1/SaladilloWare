@@ -20,8 +20,8 @@ namespace Tienda.UWP
         public MainPage()
         {
             this.InitializeComponent();
-
-            LoadApplication(new Tienda.App());
+            string dbPath = FileAccessHelper.GetLocalFilePath("tienda.db3");
+            LoadApplication(new Tienda.App(dbPath));
         }
     }
 }

@@ -7,10 +7,16 @@ using SQLite;
 
 namespace Tienda.Tables
 {
-    [Table("user")]
+    [Table("User")]
     public class User
     {
-        [PrimaryKey, AutoIncrement]
-        public int IdUser { }
+        [PrimaryKey]
+        public string IdUser { get; set;}
+        [MaxLength(50) , Unique, NotNull]
+        public String Name { get; set;}
+        [MaxLength(10), NotNull]
+        public string Password { get; set;}
+        [NotNull, MaxLength(7)]
+        public string Tipo { get; set; }
     }
 }
