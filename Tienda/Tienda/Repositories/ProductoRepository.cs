@@ -21,20 +21,6 @@ namespace Tienda.Repositories
             conn.CreateTableAsync<User>().Wait();
         }
 
-        public async Task AddNewUser(string id, string nombre, double precio, string tipo)
-        {
-            int result = 0;
-
-            try
-            {
-                result = await conn.InsertAsync(new Producto { IdProducto = id, Nombre = nombre, Precio = precio, Tipo = tipo });
-            }
-            catch (Exception ex)
-            {
-                StatusMessage = string.Format("Error al añadir al usuario {0}. Error: {1}", nombre, ex.Message);
-            }
-        }
-
         public async Task<List<Producto>> GetAllUsers()
         {
             List<Producto> listProductos = new List<Producto>();
@@ -42,7 +28,9 @@ namespace Tienda.Repositories
             {
                 listProductos= await conn.Table<Producto>().ToListAsync();
             }
+            #pragma warning disable CS0168 // Variable is declared but never used
             catch (Exception ex)
+            #pragma warning restore CS0168 // Variable is declared but never used
             {
                 StatusMessage = string.Format("Failed to retrieve data");
             }
