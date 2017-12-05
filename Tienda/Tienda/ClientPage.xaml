@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Tienda.ClientPage">
+    <ContentPage.Content>
+        <StackLayout Padding="3" Orientation="Vertical">
+            <Label Text="Placa" 
+                   HorizontalOptions="Start"
+                   VerticalOptions="Start"/>
+
+            <Picker x:Name="placaselect" SelectedIndex="0"  
+                    HorizontalOptions="FillAndExpand">
+            </Picker>
+
+            <Label Text="Procesador" 
+                   HorizontalOptions="Start"
+                   VerticalOptions="Start"/>
+
+            <Picker x:Name="procesadorselect" SelectedIndex="0"  
+                    HorizontalOptions="FillAndExpand">
+            </Picker>
+
+            <Label Text="Torre" 
+                   HorizontalOptions="Start"
+                   VerticalOptions="Start"/>
+
+            <Picker x:Name="torreselect" SelectedIndex="0"  
+                    HorizontalOptions="FillAndExpand">
+            </Picker>
+
+            <Label Text="Memoria" 
+                   HorizontalOptions="Start"
+                   VerticalOptions="Start"/>
+
+            <Picker x:Name="memoriaselect" SelectedIndex="0"  
+                    HorizontalOptions="FillAndExpand">
+            </Picker>
+
+            <Label Text="Gráfica" 
+                   HorizontalOptions="Start"
+                   VerticalOptions="Start"/>
+
+            <Picker x:Name="graficaselect" SelectedIndex="0"  
+                    HorizontalOptions="FillAndExpand">
+            </Picker>
+
+
+
+
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -61,10 +61,13 @@ namespace Tienda.ViewModels
         public async Task<bool> ShowUsername()
         {
             bool resultado = false;
+            User userSearch;
 
             ObservableCollection<User> usuarios = new ObservableCollection<User>(await App.UsuarioRepo.GetAllUsers());
 
-           if(username == "Sergio")
+            userSearch = usuarios.Where(usuario => usuario.Name.Contains(username)).SingleOrDefault(usuario => usuario.Password == password);
+
+            if(userSearch != null)
             {
                 resultado = true;
             }

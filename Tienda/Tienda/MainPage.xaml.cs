@@ -27,7 +27,12 @@ namespace Tienda
 
                 if (!resultado)
                 {
-                    ShowError("Nombre incorrecto", "El nombre introducido no es válido");
+                    ShowError("Error al iniciar sésión", "Compruebe que haya introducido bien" +
+                        " su nombre de usuario y contraseña y que no ha dejado ningún campo vacío.");
+                }
+                else
+                {
+                    App.Current.MainPage = new ClientPage();
                 }
 
             };
