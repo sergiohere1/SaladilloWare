@@ -8,10 +8,10 @@ using SQLite;
 namespace Tienda.Tables
 {
     [Table("Pedido")]
-    class Pedido
+    public class Pedido
     {
         [PrimaryKey, AutoIncrement]
-        public int codPedido{ get; set; }
+        public int CodPedido{ get; set; }
         [NotNull]
         public string Cliente { get; set; }
         [NotNull]

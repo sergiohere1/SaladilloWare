@@ -21,6 +21,7 @@ namespace Tienda.UWP
         {
             this.InitializeComponent();
             string dbPath = FileAccessHelper.GetLocalFilePath("tienda.db3");
+            
             LoadApplication(new Tienda.App(dbPath));
         }
     }

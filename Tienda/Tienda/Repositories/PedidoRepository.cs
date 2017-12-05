@@ -9,11 +9,11 @@ using Tienda.Tables;
 
 namespace Tienda.Repositories
 {
-    class PedidoRepository
+    public class PedidoRepository
     {
         public string StatusMessage { get; set; }
         private SQLiteAsyncConnection conn;
-        private string dbPathRoute;
+        
 
         public PedidoRepository(string dbPath)
         {
@@ -21,11 +21,10 @@ namespace Tienda.Repositories
             conn = new SQLiteAsyncConnection(dbPath);
             // Crear la tabla Usuario
             conn.CreateTableAsync<Pedido>().Wait();
-            dbPathRoute = dbPath;
         }
         
 
-        public async Task AddNewUser(string idUser, string placa, string procesador, string torre, string memoria, string grafica, double precio)
+        public async Task AddNewOrder(string idUser, string placa, string procesador, string torre, string memoria, string grafica, double precio)
         {
             int result = 0;
 
@@ -40,7 +39,7 @@ namespace Tienda.Repositories
             }
         }
 
-        public async Task<List<Pedido>> GetAllUsers()
+        public async Task<List<Pedido>> GetAllOrders()
         {
             List<Pedido> listPedidos = new List<Pedido>();
 
@@ -54,6 +53,7 @@ namespace Tienda.Repositories
             {
                 StatusMessage = string.Format("Failed to retrieve data");
             }
+
             return listPedidos;
         }
     }

@@ -8,7 +8,7 @@ using SQLite;
 
 namespace Tienda.Repositories
 {
-    class ProductoRepository
+    public class ProductoRepository
     {
         public string StatusMessage { get; set; }
         private SQLiteAsyncConnection conn;
@@ -18,10 +18,10 @@ namespace Tienda.Repositories
             //Inicializamos la conexión SQLite
             conn = new SQLiteAsyncConnection(dbPath);
             //Crear la tabla Usuario
-            conn.CreateTableAsync<User>().Wait();
+            conn.CreateTableAsync<Producto>().Wait();
         }
 
-        public async Task<List<Producto>> GetAllUsers()
+        public async Task<List<Producto>> GetAllProducts()
         {
             List<Producto> listProductos = new List<Producto>();
             try

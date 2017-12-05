@@ -8,7 +8,7 @@ using SQLite;
 namespace Tienda.Tables
 {
     [Table("Producto")]
-    class Producto
+    public class Producto
     {
         [PrimaryKey]
         public string IdProducto {get; set;}

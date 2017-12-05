@@ -3,9 +3,37 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Tienda"
              x:Class="Tienda.MainPage">
+    <StackLayout Orientation="Vertical" Padding="5">
+        <StackLayout>
+        <Image Source="Tienda/Images/logo.png"
+               VerticalOptions="Start"/>
 
-	<Label Text="Welcome to Xamarin Forms!" 
-           VerticalOptions="Center" 
-           HorizontalOptions="Center" />
+        <Label HorizontalOptions="CenterAndExpand"
+               VerticalOptions="Start"
+               Text="Usuario"/>
 
+        <Entry  
+               HorizontalOptions="FillAndExpand"
+               VerticalOptions="Start"
+               x:Name="userEntry" WidthRequest="100"
+               Text="{Binding Username}"/>
+        </StackLayout>
+        
+        <StackLayout>
+            <Label HorizontalOptions="CenterAndExpand"
+                   VerticalOptions="Start"
+                   Text="Contraseña"/>
+
+            <Entry HorizontalOptions="FillAndExpand"
+                   VerticalOptions="Start"
+                   IsPassword="true"
+                   x:Name="passwordEntry"  WidthRequest="100"
+                   Text="{Binding Password}"/>
+
+            <Button HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="Start"
+                    x:Name="loginButton"
+                    Text="Conectarse"/>
+        </StackLayout>
+    </StackLayout>
 </ContentPage>
