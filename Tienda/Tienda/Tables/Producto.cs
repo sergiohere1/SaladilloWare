@@ -19,5 +19,13 @@ namespace Tienda.Tables
         [NotNull, MaxLength(20)]
         public string Tipo { get; set;}
 
+        override
+        public string ToString()
+        {
+            return Nombre;
+        }
+
     }
+
+    
 }

@@ -22,28 +22,8 @@ namespace Tienda
 
             loginButton.Clicked += async (sender, args) =>
             {
-                bool resultado;
-                resultado = await mainviewmodel.ShowUsername();
-
-                if (!resultado)
-                {
-                    ShowError("Error al iniciar sésión", "Compruebe que haya introducido bien" +
-                        " su nombre de usuario y contraseña y que no ha dejado ningún campo vacío.");
-                }
-                else
-                {
-                    App.Current.MainPage = new ClientPage();
-                }
-
+                mainviewmodel.makeLogin(this);
             };
-        }
-
-        // Método encargado de mostrar cualquier error mediante un Dialog.
-        public void ShowError(string message1, string message2)
-        {
-            DisplayAlert(message1, message2, "Aceptar");
-        }
-
-        
+        }               
     }
 }

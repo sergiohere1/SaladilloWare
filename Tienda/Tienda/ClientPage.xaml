@@ -4,7 +4,7 @@
              x:Class="Tienda.ClientPage">
     <ContentPage.Content>
         <StackLayout Padding="3" Orientation="Vertical">
-            <Label Text=""
+            <Label Text="{Binding MensajeLogin}"
                     HorizontalOptions="End"
                     VerticalOptions="Start"
                     x:Name="labelWelcome"/>
@@ -13,20 +13,16 @@
                    HorizontalOptions="Start"
                    VerticalOptions="Start"/>
 
-            <Picker x:Name="placaselect" SelectedIndex="0"  
+            <Picker x:Name="placaselect" SelectedIndex="{Binding IndicePlaca}"  
                     HorizontalOptions="StartAndExpand"
                     ItemsSource="{Binding ListaPlacas}">
             </Picker>
-
-            <Button Text="Aceptar"
-                    HorizontalOptions="End"
-                    VerticalOptions="Start"/>
 
             <Label Text="Procesador" 
                    HorizontalOptions="Start"
                    VerticalOptions="Start"/>
 
-            <Picker x:Name="procesadorselect" SelectedIndex="0"  
+            <Picker x:Name="procesadorselect" SelectedIndex="{Binding IndiceProcesador}"  
                     HorizontalOptions="StartAndExpand"
                     ItemsSource="{Binding ListaProcesadores}">
             </Picker>
@@ -35,7 +31,7 @@
                    HorizontalOptions="Start"
                    VerticalOptions="Start"/>
 
-            <Picker x:Name="torreselect" SelectedIndex="0"  
+            <Picker x:Name="torreselect" SelectedIndex="{Binding IndiceTorre}"  
                     HorizontalOptions="StartAndExpand"
                     ItemsSource="{Binding ListaTorres}">
             </Picker>
@@ -44,7 +40,7 @@
                    HorizontalOptions="Start"
                    VerticalOptions="Start"/>
 
-            <Picker x:Name="memoriaselect" SelectedIndex="0"  
+            <Picker x:Name="memoriaselect" SelectedIndex="{Binding IndiceMemoria}"  
                     HorizontalOptions="StartAndExpand"
                     ItemsSource="{Binding ListaMemorias}">
             </Picker>
@@ -53,11 +49,38 @@
                    HorizontalOptions="Start"
                    VerticalOptions="Start"/>
 
-            <Picker x:Name="graficaselect" SelectedIndex="0"  
+            <Picker x:Name="graficaselect" SelectedIndex="{Binding IndiceGrafica}"  
                     HorizontalOptions="StartAndExpand"
                     ItemsSource="{Binding ListaGraficas}">
             </Picker>
 
+            <Button Text="Aceptar"
+                    HorizontalOptions="Center"
+                    x:Name="btnAceptar"
+                    IsEnabled="{Binding EstadoAceptar}"/>
+
+            <Label Text="Pedido: "
+                   HorizontalOptions="Center"/>
+
+            <ListView x:Name="lstPedido"
+                      ItemsSource="{Binding Pedido}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Nombre}"/>
+                                <Label Text="{Binding Precio}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Label Text="{Binding PrecioTotal, StringFormat='Precio total: {0:N}'}"/>
+            <Button Text="Confirmar"
+                    HorizontalOptions="Center"
+                    x:Name="btnConfirm"
+                    IsEnabled="{Binding EstadoConfirmar}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

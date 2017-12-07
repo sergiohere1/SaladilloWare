@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Tienda.Tables;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace Tienda.ViewModels
 {
@@ -56,9 +58,10 @@ namespace Tienda.ViewModels
         public ClientVM(User user)
         {
             this.user = user;
-            cargarDatos();
+            CargarDatos();
 
         }
+        #endregion
 
         #region Propiedades para cada campo
         /// <summary>
@@ -362,7 +365,7 @@ namespace Tienda.ViewModels
         /// <summary>
         /// Lista de productos del pedido actual.
         /// </summary>
-        public List<Producto> PedidoActual
+        public List<Producto> Pedido
         {
             get
             {
@@ -375,7 +378,7 @@ namespace Tienda.ViewModels
                     pedido = value;
                     if (PropertyChanged != null)
                     {
-                        PropertyChanged(this, new PropertyChangedEventArgs("PedidoActual"));
+                        PropertyChanged(this, new PropertyChangedEventArgs("Pedido"));
                     }
                 }
             }
@@ -383,16 +386,102 @@ namespace Tienda.ViewModels
         #endregion
 
 
-
         /// <summary>
         /// Método encargado de cargar todos los datos referentes al mensaje de bienvenida y a
         /// los Pickers donde el usuario podrá elegir placa, torre, etc para su pedido.
         /// </summary>
-        private void cargarDatos()
+        private async void CargarDatos()
         {
-            throw new NotImplementedException();
+            MensajeLogin = String.Format("Bienvenido {0}", user.Name);
+            ListaPlacas = new List<Producto>(await App.ProductoRepo.ObtenerPlacas());
+            IndicePlaca = -1;
+            ListaProcesadores = new List<Producto>(await App.ProductoRepo.ObtenerProcesadores());
+            IndiceProcesador = -1;
+            ListaTorres = new List<Producto>(await App.ProductoRepo.ObtenerTorres());
+            IndiceTorre = -1;
+            ListaMemorias = new List<Producto>(await App.ProductoRepo.ObtenerMemorias());
+            IndiceMemoria = -1;
+            ListaGraficas = new List<Producto>(await App.ProductoRepo.ObtenerGraficas());
+            IndiceGrafica = -1;
+        }  
+
+        /// <summary>
+        /// Mediante este método habilitaremos o deshabilitaremos el botón de aceptar, devolviendo
+        /// su correspondiente estado.
+        /// </summary>
+        public void ComprobarSelect()
+        {
+
+            if (IndicePlaca != -1 && IndiceProcesador != -1 && IndiceTorre != -1 && IndiceMemoria != -1 
+                && IndiceGrafica != -1)
+            {
+                EstadoAceptar = true;
+            }
+            else
+            {
+                EstadoAceptar = false;
+            }
 
         }
-        #endregion
+
+        public void AniadirProductosPedido()
+        {
+            List<Producto> productosPedido = new List<Producto>();
+            double precioTotal = 0;
+
+            /* Añadimos a nuestra Propiedad de Pedido todos los elementos que haya seleccionado el usuario,
+             usando para ello el Indice del Picker, lo que nos permite de manera fácil tener ya los productos
+             que haya escogido el usuario. También comprobaremos que no le haya dado a Aceptar tras cambiar
+             de decisión en algún producto elegido para limpiar lo anterior*/
+            if(productosPedido.Count() > 0)
+            {
+                productosPedido.Clear();
+                Pedido.Clear();
+                precioTotal = 0;
+                AniadirProductosAPedido(productosPedido);
+                precioTotal = CalcularPrecio(productosPedido);
+                Pedido = productosPedido;
+                PrecioTotal = precioTotal;
+            }
+            else
+            {               
+                AniadirProductosAPedido(productosPedido);
+                EstadoConfirmar = true;
+                precioTotal = CalcularPrecio(productosPedido);
+                Pedido = productosPedido;
+                PrecioTotal = precioTotal;
+            }          
+        }
+
+
+        public void AniadirProductosAPedido(List<Producto> productosLista)
+        {
+            productosLista.Add(ListaPlacas.ElementAt(IndicePlaca));
+            productosLista.Add(ListaProcesadores.ElementAt(IndiceProcesador));
+            productosLista.Add(ListaTorres.ElementAt(IndiceTorre));
+            productosLista.Add(ListaMemorias.ElementAt(IndiceMemoria));
+            productosLista.Add(ListaGraficas.ElementAt(IndiceGrafica));
+        }
+
+        public double CalcularPrecio(List<Producto> productosLista)
+        {
+            double precioTotal= 0;
+
+            foreach (Producto p in productosLista)
+            {
+                precioTotal += p.Precio;
+            }
+
+            return precioTotal;
+        }
+
+        public async void RealizarPedido(Page currentPage)
+        {
+            await App.PedidoRepo.AddNewOrder(user.IdUser, ListaPlacas.ElementAt(IndicePlaca).IdProducto, ListaProcesadores.ElementAt(IndiceProcesador).IdProducto,
+                ListaTorres.ElementAt(IndiceTorre).Nombre, ListaMemorias.ElementAt(IndiceMemoria).Nombre, ListaGraficas.ElementAt(IndiceGrafica).Nombre, PrecioTotal);
+
+            await currentPage.DisplayAlert("", "Su pedido ha sido realizado, esté atento a su correo para el seguimiento del envío.", "Aceptar");
+            App.Current.MainPage = new ClientPage(user);
+        }
     }
 }

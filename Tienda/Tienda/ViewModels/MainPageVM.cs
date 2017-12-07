@@ -15,6 +15,7 @@ namespace Tienda.ViewModels
     {
         public string username;
         public string password;
+        public string errorMessage;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -58,21 +59,52 @@ namespace Tienda.ViewModels
             }
         }
        
-        public async Task<bool> ShowUsername()
+        public async void makeLogin(MainPage page)
         {
-            bool resultado = false;
-            User userSearch;
 
-            ObservableCollection<User> usuarios = new ObservableCollection<User>(await App.UsuarioRepo.GetAllUsers());
+            if (validarDatosInsertados()){ 
+                User userSearch;
 
-            userSearch = usuarios.Where(usuario => usuario.Name.Contains(username)).SingleOrDefault(usuario => usuario.Password == password);
+                ObservableCollection<User> usuarios = new ObservableCollection<User>(await App.UsuarioRepo.GetAllUsers());
 
-            if(userSearch != null)
+                userSearch = usuarios.SingleOrDefault(t => t.Name == Username && t.Password == Password);
+
+                if (userSearch != null)
+                {
+                    // Dependiendo de si el usuario es Administrador o Cliente, cargamos una página u otra.
+                    switch (userSearch.Tipo)
+                    {
+                        case "VENDOR":
+                            break;
+                        case "CLIENTE":
+                            App.Current.MainPage = new ClientPage(userSearch);
+                            break;
+                    }
+                }
+                else
+                {
+                    errorMessage = "Error, los datos introducidos no se encuentran en la Base de Datos";
+                    await page.DisplayAlert("Error", errorMessage, "Aceptar");
+                }
+            }
+            else
             {
-                resultado = true;
+                await page.DisplayAlert("Error", errorMessage, "Aceptar");
+            }
+            
+        }
+
+        public bool validarDatosInsertados()
+        {
+            bool datosValidos = true;
+
+            if(string.IsNullOrEmpty(Username) || string.IsNullOrEmpty(Password))
+            {
+                errorMessage = "Error, el campo de nombre/usuario se encuentra vacío";
+                datosValidos = false;
             }
 
-            return resultado;
+            return datosValidos;
         }
     }
 }
