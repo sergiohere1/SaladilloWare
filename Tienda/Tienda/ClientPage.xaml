@@ -4,20 +4,31 @@
              x:Class="Tienda.ClientPage">
     <ContentPage.Content>
         <StackLayout Padding="3" Orientation="Vertical">
+            <Label Text=""
+                    HorizontalOptions="End"
+                    VerticalOptions="Start"
+                    x:Name="labelWelcome"/>
+            
             <Label Text="Placa" 
                    HorizontalOptions="Start"
                    VerticalOptions="Start"/>
 
             <Picker x:Name="placaselect" SelectedIndex="0"  
-                    HorizontalOptions="FillAndExpand">
+                    HorizontalOptions="StartAndExpand"
+                    ItemsSource="{Binding ListaPlacas}">
             </Picker>
+
+            <Button Text="Aceptar"
+                    HorizontalOptions="End"
+                    VerticalOptions="Start"/>
 
             <Label Text="Procesador" 
                    HorizontalOptions="Start"
                    VerticalOptions="Start"/>
 
             <Picker x:Name="procesadorselect" SelectedIndex="0"  
-                    HorizontalOptions="FillAndExpand">
+                    HorizontalOptions="StartAndExpand"
+                    ItemsSource="{Binding ListaProcesadores}">
             </Picker>
 
             <Label Text="Torre" 
@@ -25,7 +36,8 @@
                    VerticalOptions="Start"/>
 
             <Picker x:Name="torreselect" SelectedIndex="0"  
-                    HorizontalOptions="FillAndExpand">
+                    HorizontalOptions="StartAndExpand"
+                    ItemsSource="{Binding ListaTorres}">
             </Picker>
 
             <Label Text="Memoria" 
@@ -33,7 +45,8 @@
                    VerticalOptions="Start"/>
 
             <Picker x:Name="memoriaselect" SelectedIndex="0"  
-                    HorizontalOptions="FillAndExpand">
+                    HorizontalOptions="StartAndExpand"
+                    ItemsSource="{Binding ListaMemorias}">
             </Picker>
 
             <Label Text="Gráfica" 
@@ -41,13 +54,9 @@
                    VerticalOptions="Start"/>
 
             <Picker x:Name="graficaselect" SelectedIndex="0"  
-                    HorizontalOptions="FillAndExpand">
+                    HorizontalOptions="StartAndExpand"
+                    ItemsSource="{Binding ListaGraficas}">
             </Picker>
-
-
-
-
-
 
         </StackLayout>
     </ContentPage.Content>

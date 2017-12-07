@@ -51,6 +51,7 @@
     <Compile Include="Tables\Pedido.cs" />
     <Compile Include="Tables\Producto.cs" />
     <Compile Include="Tables\User.cs" />
+    <Compile Include="ViewModels\ClientVM.cs" />
     <Compile Include="ViewModels\MainPageVM.cs" />
   </ItemGroup>
   <ItemGroup>
