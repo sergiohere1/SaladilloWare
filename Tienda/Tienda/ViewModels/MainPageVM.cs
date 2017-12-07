@@ -75,6 +75,7 @@ namespace Tienda.ViewModels
                     switch (userSearch.Tipo)
                     {
                         case "VENDOR":
+                            App.Current.MainPage = new AdminPage();
                             break;
                         case "CLIENTE":
                             App.Current.MainPage = new ClientPage(userSearch);

@@ -81,6 +81,10 @@
                     HorizontalOptions="Center"
                     x:Name="btnConfirm"
                     IsEnabled="{Binding EstadoConfirmar}"/>
+
+            <Button Text="Cerrar sesión"
+                    HorizontalOptions="End"
+                    x:Name="btnDisconnect"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

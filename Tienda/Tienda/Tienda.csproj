@@ -51,9 +51,11 @@
     <Compile Include="Repositories\PedidoRepository.cs" />
     <Compile Include="Repositories\ProductoRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Tables\LineaPedido.cs" />
     <Compile Include="Tables\Pedido.cs" />
     <Compile Include="Tables\Producto.cs" />
     <Compile Include="Tables\User.cs" />
+    <Compile Include="ViewModels\AdminVM.cs" />
     <Compile Include="ViewModels\ClientVM.cs" />
     <Compile Include="ViewModels\MainPageVM.cs" />
   </ItemGroup>

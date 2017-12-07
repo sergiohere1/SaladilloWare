@@ -10,7 +10,7 @@ using Xamarin.Forms.Xaml;
 
 namespace Tienda.ViewModels
 {
-    class ClientVM : INotifyPropertyChanged
+    public class ClientVM : INotifyPropertyChanged
     {
         #region Campos del Viewmodel
         //Usuario actual
@@ -385,7 +385,7 @@ namespace Tienda.ViewModels
         }
         #endregion
 
-
+        #region Métodos
         /// <summary>
         /// Método encargado de cargar todos los datos referentes al mensaje de bienvenida y a
         /// los Pickers donde el usuario podrá elegir placa, torre, etc para su pedido.
@@ -477,11 +477,18 @@ namespace Tienda.ViewModels
 
         public async void RealizarPedido(Page currentPage)
         {
-            await App.PedidoRepo.AddNewOrder(user.IdUser, ListaPlacas.ElementAt(IndicePlaca).IdProducto, ListaProcesadores.ElementAt(IndiceProcesador).IdProducto,
-                ListaTorres.ElementAt(IndiceTorre).Nombre, ListaMemorias.ElementAt(IndiceMemoria).Nombre, ListaGraficas.ElementAt(IndiceGrafica).Nombre, PrecioTotal);
+            await App.PedidoRepo.AddNewOrder(user.IdUser, Pedido.ElementAt(0).IdProducto, Pedido.ElementAt(1).IdProducto,
+                Pedido.ElementAt(2).IdProducto, Pedido.ElementAt(3).IdProducto, Pedido.ElementAt(4).IdProducto, PrecioTotal);
 
             await currentPage.DisplayAlert("", "Su pedido ha sido realizado, esté atento a su correo para el seguimiento del envío.", "Aceptar");
             App.Current.MainPage = new ClientPage(user);
         }
+
+        public void CerrarSesion()
+        {
+            App.Current.MainPage = new MainPage();
+        }
+
+        #endregion
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tienda.Repositories;
 using SQLite;
 
 namespace Tienda.Tables
@@ -12,20 +13,21 @@ namespace Tienda.Tables
     {
         [PrimaryKey, AutoIncrement]
         public int CodPedido{ get; set; }
-        [NotNull]
+        [MaxLength(150)]
         public string Cliente { get; set; }
-        [NotNull]
+        [MaxLength(150)]
         public string IdPlaca { get; set;}
-        [NotNull]
+        [MaxLength(150)]
         public string IdProcesador{ get; set; }
-        [NotNull]
+        [MaxLength(150)]
         public string IdTorre { get; set; }
-        [NotNull]
+        [MaxLength(150)]
         public string IdMemoria { get; set; }
-        [NotNull]
+        [MaxLength(150)]
         public string IdGrafica { get; set; }
-        [NotNull]
+        [MaxLength(150)]
         public double Precio { get; set; }
-
     }
+
+    
 }

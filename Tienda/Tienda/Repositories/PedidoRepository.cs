@@ -24,14 +24,15 @@ namespace Tienda.Repositories
         }
         
 
-        public async Task AddNewOrder(string idUser, string placa, string procesador, string torre, string memoria, string grafica, double precio)
+        public async Task AddNewOrder(string idUser, string placa, string procesador, string torre, 
+            string memoria, string grafica, double precio)
         {
             int result = 0;
 
-
             try
             {
-                result = await conn.InsertAsync(new Pedido {Cliente = idUser, IdPlaca = placa, IdProcesador = procesador, IdTorre = torre, IdMemoria = memoria, Precio = precio });
+                result = await conn.InsertAsync(new Pedido {Cliente = idUser, IdPlaca = placa,
+                    IdProcesador = procesador, IdTorre = torre, IdMemoria = memoria, IdGrafica = grafica, Precio = precio});
             }
             catch (Exception ex)
             {

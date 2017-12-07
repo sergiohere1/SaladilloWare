@@ -13,15 +13,15 @@ namespace Tienda
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ClientPage : ContentPage
 	{
-
         private ClientVM clienteVM;
-
         public ClientPage (User user)
 		{
 			InitializeComponent ();
             clienteVM = new ClientVM(user);
             BindingContext = clienteVM;
-
+            
+            // Controlamos cada vez que el usuario elija un producto si ya ha seleccionado todos para
+            // habilitar el botón de Aceptar.
             placaselect.SelectedIndexChanged += ComprobarSelect;
             procesadorselect.SelectedIndexChanged += ComprobarSelect;
             torreselect.SelectedIndexChanged += ComprobarSelect;
@@ -30,8 +30,7 @@ namespace Tienda
 
             btnAceptar.Clicked += AniadirProductosPedido;
             btnConfirm.Clicked += RealizarPedido;
-
-
+            btnDisconnect.Clicked += CerrarSesion;
         }
 
         /// <summary>
@@ -56,9 +55,19 @@ namespace Tienda
             clienteVM.AniadirProductosPedido();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RealizarPedido(object sender, EventArgs e)
         {
             clienteVM.RealizarPedido(this);
+        }
+
+        private void CerrarSesion(object sender, EventArgs e)
+        {
+            clienteVM.CerrarSesion();
         }
 
         

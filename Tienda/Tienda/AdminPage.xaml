@@ -3,8 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Tienda.AdminPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin Forms!" />
+        <StackLayout Padding="3" Orientation="Vertical">
+            
+            <Button Text="Precios"
+                    x:Name="btnLoadXML"
+                    HorizontalOptions="Start"/>
+
+            <Label Text="Pedidos:"
+                    HorizontalOptions="Center"/>
+
+            <ListView x:Name="lstPedidosRealizados"
+                      ItemsSource="{Binding Pedidos}">
+            </ListView>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
