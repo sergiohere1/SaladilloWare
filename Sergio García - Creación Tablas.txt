@@ -1,0 +1,64 @@
+CREATE TABLE "User" (
+"IdUser" varchar primary key not null ,
+"Name" varchar(50) not null ,
+"Password" varchar(10) not null ,
+"Tipo" varchar(7) not null )
+
+CREATE TABLE "Producto" (
+"IdProducto" varchar primary key not null ,
+"Nombre" varchar(50) not null ,
+"Precio" float not null ,
+"Tipo" varchar(20) not null )
+
+CREATE TABLE "Pedido" (
+"CodPedido" integer primary key autoincrement not null ,
+"Cliente" varchar not null ,
+"IdPlaca" varchar not null ,
+"IdProcesador" varchar not null ,
+"IdTorre" varchar not null ,
+"IdMemoria" varchar not null ,
+"IdGrafica" varchar not null ,
+"Precio" float not null )
+
+INSERT INTO User (IdUser, Name, Password, Tipo)
+VALUES ('VEN1', 'David', 'soyvendedor', 'VENDOR');
+
+INSERT INTO User (IdUser, Name, Password, Tipo)
+VALUES ('CLI1', 'Juan', 'cliente1', 'CLIENTE');
+
+INSERT INTO User (IdUser, Name, Password, Tipo)
+VALUES ('CLI2', 'Ana', 'cliente2', 'CLIENTE');
+
+INSERT INTO User (IdUser, Name, Password, Tipo)
+VALUES ('CLI3', 'Lola', 'cliente3', 'CLIENTE');
+
+INSERT INTO PRODUCTO VALUES(IdProducto, Nombre, Precio, Tipo)
+VALUES('PLC1', 'Asus Prime Z270-P', 115, 'PLACA');
+
+INSERT INTO PRODUCTO VALUES(IdProducto, Nombre, Precio, Tipo)
+VALUES('PLC2', 'MSI Z270 Gaming Plus', 115, 'PLACA');
+
+INSERT INTO PRODUCTO VALUES(IdProducto, Nombre, Precio, Tipo)
+VALUES('PRC1', 'Intel Core I7-7700K 4.2GHz BOX', 115, 'PLACA');
+
+INSERT INTO PRODUCTO VALUES(IdProducto, Nombre, Precio, Tipo)
+VALUES('PRC2', 'Intel i5-6600K 3.5Ghz', 115, 'PLACA');
+
+INSERT INTO PRODUCTO VALUES(IdProducto, Nombre, Precio, Tipo)
+VALUES('TRR1', 'Thermaltake View 71 USB 3.0 Cristal Templado RGB', 115, 'PLACA');
+
+INSERT INTO PRODUCTO VALUES(IdProducto, Nombre, Precio, Tipo)
+VALUES('TRR2', 'Owlotech EVO USB 3.0 500W', 115, 'PLACA');
+
+INSERT INTO PRODUCTO VALUES(IdProducto, Nombre, Precio, Tipo)
+VALUES('MEM1', 'G.Skill Ripjaws V Red DDR4 3000 PC4-24000 16GB 2x8P', 115, 'PLACA');
+
+INSERT INTO PRODUCTO VALUES(IdProducto, Nombre, Precio, Tipo)
+VALUES('MEM2', 'Kingston ValueRAM SO-DIMM DDR3L 1600 PC3-12800 4GB', 115, 'PLACA');
+
+INSERT INTO PRODUCTO VALUES(IdProducto, Nombre, Precio, Tipo)
+VALUES('GRA1', 'Zotac GeForce GTX 1080Ti AMP! Edition 11GB GDDR5X', 115, 'PLACA');
+
+INSERT INTO PRODUCTO VALUES(IdProducto, Nombre, Precio, Tipo)
+VALUES('GRA2', 'Sapphire Nitro+ Radeon RX 580 8GB GDDR5', 115, 'PLACA');
+
