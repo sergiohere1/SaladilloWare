@@ -423,7 +423,10 @@ namespace Tienda.ViewModels
             }
 
         }
-
+        /// <summary>
+        /// Método encargado de cargar ya todos los productos seleccionados al pedido para que el usuario
+        /// pueda confirmar su compra.
+        /// </summary>
         public void AniadirProductosPedido()
         {
             List<Producto> productosPedido = new List<Producto>();
@@ -462,7 +465,11 @@ namespace Tienda.ViewModels
             productosLista.Add(ListaMemorias.ElementAt(IndiceMemoria));
             productosLista.Add(ListaGraficas.ElementAt(IndiceGrafica));
         }
-
+        /// <summary>
+        /// Método encargado de encargar el precio total del pedido.
+        /// </summary>
+        /// <param name="productosLista">Los productos del pedido</param>
+        /// <returns>Precio total del pedido</returns>
         public double CalcularPrecio(List<Producto> productosLista)
         {
             double precioTotal= 0;
@@ -474,7 +481,11 @@ namespace Tienda.ViewModels
 
             return precioTotal;
         }
-
+        /// <summary>
+        /// Método encargado de realizar el pedido y añadirlo a la base de datos
+        /// </summary>
+        /// <param name="currentPage">Pasamos la página para poder realizar el DisplaAlert que indique
+        /// que el pedido se ha realizado.</param>
         public async void RealizarPedido(Page currentPage)
         {
             await App.PedidoRepo.AddNewOrder(user.IdUser, Pedido.ElementAt(0).IdProducto, Pedido.ElementAt(1).IdProducto,

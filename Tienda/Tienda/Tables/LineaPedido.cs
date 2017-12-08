@@ -19,6 +19,9 @@ namespace Tienda.Tables
         #endregion
 
         #region Propiedades 
+        /// <summary>
+        /// Nombre del Cliente
+        /// </summary>
         public string Cliente
         {
             set
@@ -31,6 +34,9 @@ namespace Tienda.Tables
             }
         }
 
+        /// <summary>
+        /// Placa base del pedido
+        /// </summary>
         public string Placa
         {
             set
@@ -42,7 +48,9 @@ namespace Tienda.Tables
                 return placa;
             }
         }
-
+        /// <summary>
+        /// Nombre del procesador del pedido
+        /// </summary>
         public string Procesador
         {
             set
@@ -54,7 +62,9 @@ namespace Tienda.Tables
                 return procesador;
             }
         }
-
+        /// <summary>
+        /// Nombre de la torre del pedido
+        /// </summary>
         public string Torre
         {
             set
@@ -66,7 +76,9 @@ namespace Tienda.Tables
                 return torre;
             }
         }
-
+        /// <summary>
+        /// Nombre de la memoria del pedido
+        /// </summary>
         public string Memoria
         {
             set
@@ -78,7 +90,9 @@ namespace Tienda.Tables
                 return memoria;
             }
         }
-
+        /// <summary>
+        /// Nombre de la gráfica del pedido
+        /// </summary>
         public string Grafica
         {
             set
@@ -90,7 +104,9 @@ namespace Tienda.Tables
                 return grafica;
             }
         }
-
+        /// <summary>
+        /// Precio total del pedido
+        /// </summary>
         public double Precio
         {
             set

@@ -20,7 +20,10 @@ namespace Tienda.Repositories
             //Crear la tabla Usuario
             conn.CreateTableAsync<User>().Wait();
         }
-
+        /// <summary>
+        /// Método encargado de devolver todos los usuarios que haya en la tabla Usuario.
+        /// </summary>
+        /// <returns>Una lista con todos los Usuarios.</returns>
         public async Task<List<User>> GetAllUsers()
         {
             List<User> listUsers = new List<User>();

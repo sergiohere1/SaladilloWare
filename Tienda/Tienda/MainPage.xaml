@@ -5,9 +5,13 @@
              x:Class="Tienda.MainPage">
     <StackLayout Orientation="Vertical" Padding="5">
         <StackLayout>
+            
         <Image Source="Tienda/Images/logo.png"
-               VerticalOptions="Start"/>
-
+               HorizontalOptions="CenterAndExpand"
+               VerticalOptions="StartAndExpand"/>
+        </StackLayout>
+        
+        <StackLayout>
         <Label HorizontalOptions="CenterAndExpand"
                VerticalOptions="Start"
                Text="Usuario"/>
@@ -18,7 +22,7 @@
                x:Name="userEntry" WidthRequest="100"
                Text="{Binding Username}"/>
         </StackLayout>
-        
+
         <StackLayout>
             <Label HorizontalOptions="CenterAndExpand"
                    VerticalOptions="Start"

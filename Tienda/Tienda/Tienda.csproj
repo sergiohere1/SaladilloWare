@@ -96,6 +96,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Assets\Precios.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <Content Include="Images\logo.png" />
   </ItemGroup>
   <ItemGroup>

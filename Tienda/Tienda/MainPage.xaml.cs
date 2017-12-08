@@ -20,10 +20,12 @@ namespace Tienda
             // contraseña.
             BindingContext = mainviewmodel;
 
-            loginButton.Clicked += async (sender, args) =>
-            {
-                mainviewmodel.makeLogin(this);
-            };
-        }               
+            loginButton.Clicked += MakeLogin;
+        } 
+        
+        private void MakeLogin(object sender, EventArgs e)
+        {
+            mainviewmodel.MakeLogin(this);
+        }
     }
 }

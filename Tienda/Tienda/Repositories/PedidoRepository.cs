@@ -23,7 +23,17 @@ namespace Tienda.Repositories
             conn.CreateTableAsync<Pedido>().Wait();
         }
         
-
+        /// <summary>
+        /// Método encargado de crear un nuevo Pedido para insertarlo en la tabla Pedido
+        /// </summary>
+        /// <param name="idUser">Id del usuario que realiza el pedido</param>
+        /// <param name="placa">Id de la placa base</param>
+        /// <param name="procesador">Id del procesador</param>
+        /// <param name="torre">Id de la torre</param>
+        /// <param name="memoria">Id de la Memoria</param>
+        /// <param name="grafica">Id de la gráfica</param>
+        /// <param name="precio">Precio total</param>
+        /// <returns></returns>
         public async Task AddNewOrder(string idUser, string placa, string procesador, string torre, 
             string memoria, string grafica, double precio)
         {
@@ -39,7 +49,10 @@ namespace Tienda.Repositories
                 StatusMessage = string.Format("Error al añadir al usuario {0}. Error: {1}", idUser, ex.Message);
             }
         }
-
+        /// <summary>
+        /// Método encargado de obtener todos los pedidos realizados.
+        /// </summary>
+        /// <returns>Devuelve una lista con todos los pedidos realizados</returns>
         public async Task<List<Pedido>> GetAllOrders()
         {
             List<Pedido> listPedidos = new List<Pedido>();

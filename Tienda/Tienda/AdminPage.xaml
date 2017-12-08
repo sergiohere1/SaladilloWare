@@ -15,7 +15,11 @@
             <ListView x:Name="lstPedidosRealizados"
                       ItemsSource="{Binding Pedidos}">
             </ListView>
-            
+
+            <Button x:Name="btnAdminDisconnect"
+                    Text="Cerrar sesión"
+                    HorizontalOptions="Center"/>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -13,12 +13,26 @@ namespace Tienda.ViewModels
 
     public class MainPageVM : INotifyPropertyChanged
     {
+        #region Campos
+        /// <summary>
+        /// Nombre del usuario
+        /// </summary>
         public string username;
+        /// <summary>
+        /// Contraseña
+        /// </summary>
         public string password;
+        /// <summary>
+        /// Mensaje de error dependiendo del error que se le de al usuario.
+        /// </summary>
         public string errorMessage;
-
+        /// <summary>
+        /// Campo que se implementa al implementar la interfaz INotifyPropertyChanged
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
 
+        #region Propiedades
         public string Username
         {
             get
@@ -58,11 +72,19 @@ namespace Tienda.ViewModels
                 }
             }
         }
-       
-        public async void makeLogin(MainPage page)
+        #endregion
+
+        #region Métodos
+        /// <summary>
+        /// Método encargado de validar el Login del usuario, y, en función a si es un vendedor o
+        /// un cliente, cargarle una página u otra.
+        /// </summary>
+        /// <param name="page">Página actual que se pasa para el lanzamiento de alertas para
+        /// los errores</param>
+        public async void MakeLogin(MainPage page)
         {
 
-            if (validarDatosInsertados()){ 
+            if (ValidarDatosInsertados()){ 
                 User userSearch;
 
                 ObservableCollection<User> usuarios = new ObservableCollection<User>(await App.UsuarioRepo.GetAllUsers());
@@ -95,7 +117,12 @@ namespace Tienda.ViewModels
             
         }
 
-        public bool validarDatosInsertados()
+        /// <summary>
+        /// Método encargado de validar los campos de Usuario y Contraseña por si hay valores vacíos o
+        /// nulos
+        /// </summary>
+        /// <returns></returns>
+        public bool ValidarDatosInsertados()
         {
             bool datosValidos = true;
 
@@ -107,5 +134,7 @@ namespace Tienda.ViewModels
 
             return datosValidos;
         }
+
+        #endregion
     }
 }

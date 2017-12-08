@@ -20,7 +20,10 @@ namespace Tienda.Repositories
             //Crear la tabla Usuario
             conn.CreateTableAsync<Producto>().Wait();
         }
-
+        /// <summary>
+        /// Método que nos devuelve todos los productos que tengamos en la tabla Producto.
+        /// </summary>
+        /// <returns>Una lista con todos los productos</returns>
         public async Task<List<Producto>> GetAllProducts()
         {
             List<Producto> listProductos = new List<Producto>();
@@ -36,7 +39,11 @@ namespace Tienda.Repositories
             }
             return listProductos;
         }
-
+        /// <summary>
+        /// Método encargado de obtener todas las placas de nuestra tabla Producto mediante un filtrado
+        /// por tipo.
+        /// </summary>
+        /// <returns>Una lista con todas las placas</returns>
         public async Task<List<Producto>> ObtenerPlacas()
         {
             List<Producto> listProductos = new List<Producto>();
@@ -52,7 +59,11 @@ namespace Tienda.Repositories
             }
             return listProductos;
         }
-
+        /// <summary>
+        /// Método encargado de obtener todos los procesadores de la tabla Producto mediante un filtrado
+        /// por su tipo
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<Producto>> ObtenerProcesadores()
         {
             List<Producto> listProductos = new List<Producto>();
@@ -68,7 +79,11 @@ namespace Tienda.Repositories
             }
             return listProductos;
         }
-
+        /// <summary>
+        /// Método encargado de obtener todas las torres de nuestra tabla Producto mediante un filtrado
+        /// por tipo.
+        /// </summary>
+        /// <returns>Una lista de todas las torres</returns>
         public async Task<List<Producto>> ObtenerTorres()
         {
             List<Producto> listProductos = new List<Producto>();
@@ -84,7 +99,11 @@ namespace Tienda.Repositories
             }
             return listProductos;
         }
-
+        /// <summary>
+        /// Método encargado de obtener todas las memorias que tengamos en la tabla Producto mediante un
+        /// filtro por el tipo
+        /// </summary>
+        /// <returns>Todas las memorias que tengamos en nuestra tabla Producto</returns>
         public async Task<List<Producto>> ObtenerMemorias()
         {
             List<Producto> listProductos = new List<Producto>();
@@ -101,6 +120,10 @@ namespace Tienda.Repositories
             return listProductos;
         }
 
+        /// <summary>
+        /// Método para obtener todas las gráficas de nuestra tabla de productos mediante un filtro por su tipo.
+        /// </summary>
+        /// <returns>Una lista con todas las gráficas</returns>
         public async Task<List<Producto>> ObtenerGraficas()
         {
             List<Producto> listProductos = new List<Producto>();
@@ -118,6 +141,18 @@ namespace Tienda.Repositories
                 StatusMessage = string.Format("Error al obtener los datos");
             }
             return listProductos;
+        }
+
+        /// <summary>
+        /// Método encargado de actualizar los productos, en este caso lo que le pasamos es la id del Producto que queramos
+        /// actualizar y su precio nuevo.
+        /// </summary>
+        /// <param name="idProducto">El producto que queremos actualizar</param>
+        /// <param name="precioNuevo">El nuevo precio de dicho producto</param>
+        /// <returns></returns>
+        public async Task ActualizarProductos(string idProducto, double precioNuevo)
+        {           
+                await conn.ExecuteAsync("UPDATE Producto SET Precio = ? WHERE IdProducto = ?", precioNuevo, idProducto);           
         }
     }
 }
